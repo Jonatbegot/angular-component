@@ -1,1 +1,10 @@
-<app-todo-list></app-todo-list>
+<form class="p-3 shadow d-flex p-3 bg-white rounded">
+  <div class="form-group d-flex w-50">
+    <input [(ngModel)]="title" type="input" class="form-control w-100" name="todo-title" placeholder="create new todo list...">
+    <button type="submit" class="btn btn-primary ml-2 w-20">go!</button>
+  </div>
+</form>
+
+<main class="p-5">
+  <app-todo-list [name]="title"></app-todo-list>
+</main>

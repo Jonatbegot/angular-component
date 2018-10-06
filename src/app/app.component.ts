@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-components';
+  title = 'trigger ngOnInit in app-todo-list';
 }
