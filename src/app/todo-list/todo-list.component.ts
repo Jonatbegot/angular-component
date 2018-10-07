@@ -85,11 +85,17 @@ export class TodoListComponent implements OnInit, OnChanges, OnChanges, AfterCon
    */
   displayChecked($event) {
     console.log('event successfuly received');
-
     if ($event) {
       this.nbChecked++;
     } else {
       this.nbChecked--;
     }
+
+    if (this.nbChecked > this.todos.length) {
+      this.nbChecked = this.todos.length;
+    } else if (this.nbChecked < 0) {
+      this.nbChecked = 0;
+    }
+    // this.nbChecked = this.nbChecked > this.todos.length ? this.todos.length
   }
 }
