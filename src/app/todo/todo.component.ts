@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterViewChecked, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../common/todo.service';
 
 @Component({
@@ -12,6 +12,10 @@ export class TodoComponent implements OnInit, AfterViewInit, AfterViewChecked {
   @Input()
   todo: any;
 
+  // notification envoyé au parent
+  @Output()
+  notify: EventEmitter<any> = new EventEmitter();
+
   // checkbox du todo
   isChecked: boolean;
 
@@ -21,7 +25,7 @@ export class TodoComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   ngAfterViewInit(): void {
-     console.log(`TodoComponent : ngAfterViewInit`);
+    console.log(`TodoComponent : ngAfterViewInit`);
   }
 
   ngAfterViewChecked(): void {
@@ -41,7 +45,9 @@ export class TodoComponent implements OnInit, AfterViewInit, AfterViewChecked {
    */
   check(isChecked) {
     this.isChecked = isChecked;
+    this.notify.emit(isChecked);
   }
 
 
 }
+  

@@ -2,7 +2,7 @@
 <form>
   <div class="form-group d-flex justify-content-between">
 
-    <input name="delete" type="checkbox" [(ngModel)]="isChecked">
+    <input name="delete" type="checkbox" (change)="check(isChecked)" [(ngModel)]="isChecked">
 
     <span class="align-middle mx-2 w-100">{{todo.message}}</span>
 

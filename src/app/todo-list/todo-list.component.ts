@@ -16,6 +16,8 @@ export class TodoListComponent implements OnInit, OnChanges, OnChanges, AfterCon
   todo: any = {};
   // checkbox général
   isAllCheked = false;
+  // nombre de toto checké
+  nbChecked = 0;
   // composants enfant <app-todo>
   @ViewChildren(TodoComponent) todoComponents: QueryList<TodoComponent>;
   // composant enfant <app-todo-header>
@@ -75,5 +77,19 @@ export class TodoListComponent implements OnInit, OnChanges, OnChanges, AfterCon
       }
     });
     this.isAllCheked = false;
+  }
+
+  /**
+   * Incrément/décrémente le nombre de todo checké ou non
+   * @param $event
+   */
+  displayChecked($event) {
+    console.log('event successfuly received');
+
+    if ($event) {
+      this.nbChecked++;
+    } else {
+      this.nbChecked--;
+    }
   }
 }

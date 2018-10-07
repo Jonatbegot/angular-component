@@ -13,10 +13,11 @@
   <div class="py-4 d-flex justify-content-arround">
     <input type="checkbox" name="check-all"  [(ngModel)]="isAllCheked" (change)="checkAll()">
     <div class="ml-2 w-100 text-center font-weight-light font-italic text-monospace">TITLE</div>
+    {{nbChecked + '/' +  todos.length}}
   </div>
 
   <!-- liste des todos -->
-  <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+  <app-todo *ngFor="let todo of todos" [todo]="todo" (notify)="displayChecked($event)" ></app-todo>
 
   <!-- bouton supprimer global-->
   <div class="form-group my-3 d-flex justify-content-end">
