@@ -1,0 +1,11 @@
+<!-- affichage normal -->
+<div *ngIf="!edit" class="my-3 d-flex justify-content-arround">
+  <h4 class="p-2 w-100">{{name}}</h4>
+  <i class="fas fa-pen" (click)="edit = true"></i>
+</div>
+
+<!-- Affichage en mode édition -->
+<div *ngIf="edit" class="form-group my-3 d-flex justify-content-arround">
+  <input type="input" class="form-control" name="title" [(ngModel)]="name">
+  <button type="submit" class="btn btn-primary" (click)="edit = false"><i class="fas fa-pen"></i></button>
+</div>

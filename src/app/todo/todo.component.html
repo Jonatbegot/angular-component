@@ -1,0 +1,16 @@
+<!--template pour un todo -->
+<form>
+  <div class="form-group d-flex justify-content-between">
+
+    <input name="delete" type="checkbox" [(ngModel)]="isChecked">
+
+    <span class="align-middle mx-2 w-100">{{todo.message}}</span>
+
+    <div>
+      <button class="btn btn-danger" (click)="delete()">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
+
+  </div>
+</form>
