@@ -4,9 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TodoService {
-  todos: any[] = [];
+  todos: any[];
 
-  constructor() { }
+  constructor() {
+    if (!localStorage.products) {
+
+      this.saveToLocalStorage([]);
+      this.todos = [];
+
+    } else {
+      const data = JSON.parse(localStorage.products);
+      this.todos = data;
+    }
+  }
 
   get() {
       return this.todos;
@@ -19,6 +29,7 @@ export class TodoService {
   add(task) {
     task.id = this.todos.length;
     this.todos.push(task);
+    this.saveToLocalStorage(this.todos);
   }
 
   /**
@@ -28,5 +39,11 @@ export class TodoService {
   delete(todo) {
     const index = this.todos.findIndex(x => x.id === todo.id);
     this.todos.splice(index, 1);
+    this.saveToLocalStorage(this.todos);
+  }
+
+  saveToLocalStorage(products) {
+    const data = JSON.stringify(products);
+    localStorage.setItem('todos', data);
   }
 }
