@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, AfterContentInit, A
 import { TodoService } from '../common/todo.service';
 import { TodoComponent } from '../todo/todo.component';
 import { TodoHeaderComponent } from '../todo-header/todo-header.component';
+import { Todo } from '../common/todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,7 +14,7 @@ export class TodoListComponent implements OnInit, OnChanges, OnChanges, AfterCon
   // liste des todos à afficher
   todos: any[];
   // todo à créer
-  todo: any = {};
+  todo: Todo = new Todo();
   // checkbox général
   isAllCheked = false;
   // nombre de toto checké
@@ -57,7 +58,7 @@ export class TodoListComponent implements OnInit, OnChanges, OnChanges, AfterCon
    */
   add() {
     this.service.add(this.todo);
-    this.todo = {};
+    this.todo = new Todo();
   }
 
   /**

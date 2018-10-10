@@ -1,34 +1,43 @@
 import { Injectable } from '@angular/core';
+import { Todo } from './todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  todos: any[];
+  // déclaration du tableau todos de type Todo
+  todos: Todo[];
 
   constructor() {
-    if (!localStorage.products) {
+    // Si la clé n'éxiste "todos" pas dans le local storage
+    if (!localStorage.todos) {
 
+      // Initialisation du local storage et du tableau todos
       this.saveToLocalStorage([]);
       this.todos = [];
 
     } else {
-      const data = JSON.parse(localStorage.products);
+      // Si la clé "todos" existe récupération des donnée en conversion
+      // en objet javascript (json)
+      const data = JSON.parse(localStorage.todos);
       this.todos = data;
     }
   }
 
-  get() {
-      return this.todos;
+  /**
+   * Retourn la liste des Todos
+   */
+  get(): Todo[] {
+    return this.todos;
   }
 
   /**
    * Sauvegarde une tache
-   * @param task
+   * @param todo
    */
-  add(task) {
-    task.id = this.todos.length;
-    this.todos.push(task);
+  add(todo: Todo) {
+    todo.id = this.todos.length.toString();
+    this.todos.push(todo);
     this.saveToLocalStorage(this.todos);
   }
 
@@ -42,6 +51,10 @@ export class TodoService {
     this.saveToLocalStorage(this.todos);
   }
 
+  /**
+   * Mise à jour du local storage avec la liste "todos"
+   * @param products
+   */
   saveToLocalStorage(products) {
     const data = JSON.stringify(products);
     localStorage.setItem('todos', data);
