@@ -11,16 +11,24 @@ export class TodoService {
   constructor() {
     // Si la clé n'éxiste "todos" pas dans le local storage
     if (!localStorage.todos) {
-
+      console.log('if');
       // Initialisation du local storage et du tableau todos
       this.saveToLocalStorage([]);
       this.todos = [];
 
     } else {
+      console.log('else');
       // Si la clé "todos" existe récupération des donnée en conversion
       // en objet javascript (json)
       const data = JSON.parse(localStorage.todos);
-      this.todos = data;
+
+      // converte data to Todo model
+      this.todos = data.map(x => {
+        const todo = new Todo();
+        todo.id = x.id;
+        todo.message = x.message;
+        return todo;
+      });
     }
   }
 
